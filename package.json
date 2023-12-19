@@ -10,10 +10,12 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.3.1",
-    "googleapis": "^129.0.0"
+    "googleapis": "^129.0.0",
+    "yargs": "^17.7.2"
   },
   "devDependencies": {
     "@types/node": "^20.10.5",
+    "@types/yargs": "^17.0.32",
     "typescript": "^5.3.3"
   }
 }
