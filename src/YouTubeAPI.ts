@@ -1,4 +1,4 @@
-import { google } from 'googleapis';
+import { youtube_v3, google } from 'googleapis';
 
 class YouTubeAPI {
     private apiKey: string;
@@ -26,6 +26,27 @@ class YouTubeAPI {
             return null;
         } catch (error) {
             console.error('Error fetching channel name:', error);
+            return null;
+        }
+    }
+
+    async getVideoInfo(videoId: string): Promise<youtube_v3.Schema$VideoSnippet | null> {
+        try {
+            const response = await this.youtube.videos.list({
+                part: ['snippet'],
+                id: [videoId]
+            });
+
+            const videos = response.data.items;
+            if (videos && videos.length > 0) {
+                const snippet = videos[0].snippet;
+                if(snippet)
+                    return snippet
+                return null
+            }
+            return null;
+        } catch (error) {
+            console.error('Error fetching video information:', error);
             return null;
         }
     }
